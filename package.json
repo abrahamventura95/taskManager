@@ -1,6 +1,6 @@
 {
   "name": "taskmanager",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/server"
@@ -18,5 +18,7 @@
     "mysql": "^2.18.1",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0"
-  }
+  },
+  "author": "Abraham Ventura",
+  "license": "MIT"
 }
