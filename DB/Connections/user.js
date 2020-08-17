@@ -1,7 +1,7 @@
 require('dotenv').config();
 var jwt 		= require('jsonwebtoken');
 var DBHelper 	= require('../helper');
-var bcrypt 	= require('bcrypt');
+var bcrypt 		= require('bcrypt');
 
 
 exports.login = function (obj, callback) {
@@ -74,7 +74,6 @@ exports.existsEmail = function(email, callback) {
 };
 
 exports.create = function(obj, callback) {
-	console.log(obj);
   	var sqlQuery = "INSERT INTO user (fullName, email, password, 			\
   									  dateOfBirth, gender)					\
 							VALUES ('" + obj.fullName		+ "',			\

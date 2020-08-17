@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `taskManager`.`user` (
   `fullName` VARCHAR(45) NOT NULL,
   `gender` ENUM('male', 'female', 'other') NOT NULL DEFAULT 'male',
   `dateOfBirth` DATE NOT NULL,
-  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`));
 
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `taskManager`.`task` (
   `tag` VARCHAR(45) NOT NULL,
   `priority` ENUM('5', '4', '3', '2', '1') NOT NULL DEFAULT '3',
   `status` BIT NOT NULL DEFAULT 0,
-  `create_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   CONSTRAINT `user_task`
     FOREIGN KEY (`id_user`)
@@ -176,7 +176,7 @@ USE `taskManager`$$
 CREATE DEFINER = CURRENT_USER TRIGGER `taskManager`.`task_BEFORE_UPDATE` BEFORE UPDATE ON `task` FOR EACH ROW
 BEGIN
 	 IF new.status = 1 THEN
-		INSERT INTO completedtask(id_task,id_user,tag,priority,begin_time) values (old.id, old.id_user, old.tag, old.priority, old.create_at);
+		INSERT INTO completedtask(id_task,id_user,tag,priority,begin_time) values (old.id, old.id_user, old.tag, old.priority, old.created_at);
      END IF;
 END$$
 
