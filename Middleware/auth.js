@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+const jwt 		= require('jsonwebtoken');
+var DBHelper 	= require('../DB/helper');
 
 exports.check = function(req, res, next){
     const authHeader = req.headers['authorization'];
@@ -12,4 +13,16 @@ exports.check = function(req, res, next){
         req.user = user;
         next();
     });
+}
+
+exports.checkTask = function(req, res, next){
+	var id = req.body.task || req.param('id');
+	var sqlQuery = "SELECT *									\
+					FROM task									\
+					WHERE id_user ='" + req.user.sub  + "'	AND	\
+						  id 	  ='" + id 			  + "'";
+	DBHelper.doQuery(sqlQuery, function(err, data) {
+		if(data[0] == undefined) return res.sendStatus(process.env.FORBIDDEN);
+		next();
+	});
 }
