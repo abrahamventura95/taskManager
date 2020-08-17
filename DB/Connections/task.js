@@ -55,7 +55,7 @@ exports.getByDate = function(obj, callback) {
 };
 
 exports.create = function(obj, callback) {
-	var bool = (obj.status === true);
+	var bool = (obj.status == "TRUE");
 
   	var sqlQuery = "INSERT INTO task (id_user, tag, status, priority)		\
 							VALUES ('" + obj.user		+ "',				\
@@ -69,7 +69,7 @@ exports.create = function(obj, callback) {
 
 
 exports.edit = function(obj, callback) {
-	var bool = (obj.status === true);
+	var bool = (obj.status == "TRUE");
 
 	var sqlQuery = "UPDATE  task SET  								\
 					 	    tag 		='" + obj.tag		+ "',	\

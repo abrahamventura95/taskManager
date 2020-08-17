@@ -163,3 +163,9 @@ exports.delete = function(req, res){
 		res.json(data);
 	});
 }
+
+exports.deleteData = function(req, res){
+	queries.deleteData(req.user.sub, function(err, data){
+		res.json(data);
+	});
+}

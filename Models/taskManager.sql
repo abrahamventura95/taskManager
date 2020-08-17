@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `taskManager`.`appointment` (
   `tag` VARCHAR(45) NOT NULL,
   `place` VARCHAR(45) NULL,
   `topic` VARCHAR(45) NULL,
-  `status` BIT(2) NOT NULL DEFAULT 0,
+  `status` BIT NOT NULL DEFAULT 0,
   `time` DATETIME NOT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
