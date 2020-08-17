@@ -5,8 +5,8 @@ var auth = require('../Middleware/auth');
 module.exports = function(app) {	
 	app.route('/habit')
 		.post(auth.check, controller.create)
-		.put(auth.check, controller.edit)
-		.delete(auth.check, controller.delete);
+		.put(auth.check, auth.checkHabit, controller.edit)
+		.delete(auth.check, auth.checkHabit, controller.delete);
 	app.route('/habits')
 		.get(auth.check, controller.get);
 	app.route('/habits/status')

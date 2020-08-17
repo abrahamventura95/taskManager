@@ -8,6 +8,8 @@ module.exports = function(app) {
 		.delete(auth.check, controller.delete);
 	app.route('/user/data')
 		.delete(auth.check, controller.deleteData);
+	app.route('/user/statistics')
+		.get(auth.check, controller.getStats);
 	app.route('/users')
 	  	.get(controller.getUsers);	  	
 	app.route('/register')

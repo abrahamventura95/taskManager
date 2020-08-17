@@ -3,6 +3,7 @@ var bcrypt		= require('bcrypt');
 var validator	= require('validator');
 var functions	= require('./functions');
 var queries		= require('../DB/Connections/user');
+var statistics	= require('../DB/Connections/statistics');
 
 function validateRegister(body,callback) {
 	//Empty validation
@@ -167,5 +168,27 @@ exports.delete = function(req, res){
 exports.deleteData = function(req, res){
 	queries.deleteData(req.user.sub, function(err, data){
 		res.json(data);
+	});
+}
+
+exports.getStats = function(req, res){
+	statistics.avgPriority(req.user.sub, function(err, ap){
+		statistics.completedTasks(req.user.sub, function(err, ct){
+			statistics.avgTimeTask(req.user.sub, function(err, att){
+				statistics.avgTimeApp(req.user.sub, function(err, ata){
+					statistics.completedApps(req.user.sub, function(err, ca){
+						var obj = {
+							avgPriority: ap[0].ap,
+							completedTasks: ct[0].ct,
+							completedAppointments: ca[0].ca,
+							avgTimeAppointments: ata[0].days,
+							avgTimeTask: att[0].days,
+							format: 'days'
+						};
+						res.json(obj);
+					});
+				});
+			});
+		});
 	});
 }
