@@ -119,3 +119,21 @@ exports.delete = function (id, callback){
 		callback(err, data);
 	});
 };
+
+exports.deleteData = function (id, callback){
+	var taskQuery = "DELETE FROM `task` 				\
+						WHERE `id_user`='" + id + "'";
+
+	var habitQuery = "DELETE FROM `habit` 				\
+						WHERE `id_user`='" + id + "'";
+	
+	var appmntQuery = "DELETE FROM `appointment` 		\
+						WHERE `id_user`='" + id + "'";
+	DBHelper.doQuery(taskQuery, function(err, data){
+		DBHelper.doQuery(habitQuery, function(err, data){
+			DBHelper.doQuery(appmntQuery, function(err, data){
+				callback(err, data);
+			});
+		});
+	});			  				  				  
+}

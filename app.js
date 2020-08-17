@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var User = require('./routes/users');
 var Task = require('./routes/tasks');
 var Appment = require('./routes/appointments');
+var Habit = require('./routes/habits');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/', indexRouter);
 User(app);
 Task(app);
 Appment(app);
+Habit(app);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
